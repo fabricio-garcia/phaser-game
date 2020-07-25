@@ -5,7 +5,11 @@ export default class Game extends Phaser.Scene {
     super('game');
   }
 
-  preload() {}
+  preload() {
+    this.load.image('background', 'assets/bg_layer1.png');
+  }
 
-  create() {}
+  create() {
+    this.add.image(240, 320, 'background');
+  }
 }
