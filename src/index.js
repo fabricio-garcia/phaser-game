@@ -6,4 +6,5 @@ export default new Phaser.Game({
   width: 480,
   height: 640,
   scene: Game,
+  parent: document.querySelector('#game-container'),
 });
