@@ -2,16 +2,18 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
   // https://webpack.js.org/concepts/entry-points/#multi-page-application
-  entry: ['babel-polyfill', './src/index.js'],
+  entry: {
+    index: './src/index.js',
+  },
 
   output: {
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/',
     filename: 'bundle.js',
-    path: path.resolve(__dirname, 'dist'),
   },
 
   // https://webpack.js.org/configuration/dev-server/
@@ -19,17 +21,24 @@ module.exports = {
     contentBase: './dist',
   },
 
+  // https://webpack.js.org/concepts/plugins/
+  plugins: [
+    new HtmlWebpackPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, 'assets', '**', '*'), to: path.resolve(__dirname, 'dist') },
+      ],
+    }),
+    new CleanWebpackPlugin(),
+  ],
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        include: path.resolve(__dirname, 'src/'),
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: ['@babel/preset-env'],
-          },
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env'],
         },
       },
       {
@@ -53,25 +62,4 @@ module.exports = {
       },
     ],
   },
-
-  // https://webpack.js.org/concepts/plugins/
-  plugins: [
-    new CleanWebpackPlugin(),
-    new CopyWebpackPlugin({
-      patterns: [
-        {
-          from: path.resolve(__dirname, 'src/assets', '**', '*'),
-          to: path.resolve(__dirname, 'dist'),
-        },
-      ],
-    }),
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: './src/index.html',
-    }),
-    new webpack.DefinePlugin({
-      'typeof CANVAS_RENDERER': JSON.stringify(true),
-      'typeof WEBGL_RENDERER': JSON.stringify(true),
-    }),
-  ],
 };
