@@ -1,4 +1,5 @@
-import Phaser from '../lib/phaser';
+import Phaser from 'phaser';
+import Layer from '../assets/bg_layer1.png';
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -6,7 +7,7 @@ export default class Game extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('background', 'assets/bg_layer1.png');
+    this.load.image('background', Layer);
   }
 
   create() {

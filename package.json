@@ -2,12 +2,12 @@
   "name": "phaser-game",
   "version": "1.0.0",
   "description": "Game webapp using the Phaser framework",
-  "main": "index.js",
+  "main": "src/index.js",
   "private": "true",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
-    "build": "webpack --mode production",
+    "build": "webpack --config webpack/prod.js --mode production",
+    "start": "webpack-dev-server --config webpack/base.js --open",
     "lint": "eslint .",
     "lint-fix": "eslint . --fix"
   },
@@ -39,14 +39,18 @@
     "eslint-plugin-import": "^2.20.2",
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^4.3.0",
+    "raw-loader": "^4.0.1",
     "style-loader": "^1.2.1",
     "stylelint": "^13.3.3",
     "stylelint-config-standard": "^20.0.0",
     "stylelint-csstree-validator": "^1.8.0",
     "stylelint-scss": "^3.17.2",
+    "terser-webpack-plugin": "^3.0.7",
+    "url-loader": "^4.1.0",
     "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "webpack-dev-server": "^3.11.0",
+    "webpack-merge": "^5.0.9"
   },
   "dependencies": {
     "phaser": "^3.24.1"

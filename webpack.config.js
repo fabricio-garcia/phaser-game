@@ -1,7 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 module.exports = {
@@ -11,8 +12,7 @@ module.exports = {
   },
 
   output: {
-    path: path.resolve(__dirname, './dist'),
-    publicPath: '/',
+    path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
   },
 
@@ -21,21 +21,12 @@ module.exports = {
     contentBase: './dist',
   },
 
-  // https://webpack.js.org/concepts/plugins/
-  plugins: [
-    new HtmlWebpackPlugin(),
-    new CopyWebpackPlugin({
-      patterns: [
-        { from: path.resolve(__dirname, 'assets', '**', '*'), to: path.resolve(__dirname, 'dist') },
-      ],
-    }),
-    new CleanWebpackPlugin(),
-  ],
   module: {
     rules: [
       {
         test: /\.js$/,
         exclude: /node_modules/,
+        include: path.resolve(__dirname, 'src/'),
         loader: 'babel-loader',
         options: {
           presets: ['@babel/preset-env'],
@@ -62,4 +53,35 @@ module.exports = {
       },
     ],
   },
+
+  // https://webpack.js.org/concepts/plugins/
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './src/index.html',
+      inject: true,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: false,
+      },
+    }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: path.resolve(__dirname, 'src/index.html'),
+          to: path.resolve(__dirname, 'dist'),
+        },
+        {
+          from: path.resolve(__dirname, 'src/assets', '**', '*'),
+          to: path.resolve(__dirname, 'dist'),
+        },
+      ],
+    }),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [path.join(__dirname, 'dist/**/*')],
+    }),
+    new webpack.DefinePlugin({
+      'typeof CANVAS_RENDERER': JSON.stringify(true),
+      'typeof WEBGL_RENDERER': JSON.stringify(true),
+    }),
+  ],
 };
