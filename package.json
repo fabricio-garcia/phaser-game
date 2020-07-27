@@ -49,8 +49,7 @@
     "url-loader": "^4.1.0",
     "webpack": "^4.44.0",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0",
-    "webpack-merge": "^5.0.9"
+    "webpack-dev-server": "^3.11.0"
   },
   "dependencies": {
     "phaser": "^3.24.1"
