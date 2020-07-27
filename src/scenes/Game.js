@@ -16,7 +16,7 @@ export default class Game extends Phaser.Scene {
 
   create() {
     this.add.image(240, 320, 'background');
-    const platforms = this.physics.add.staticGroup();
+    this.platforms = this.physics.add.staticGroup();
 
     // eslint-disable-next-line no-plusplus
     for (let i = 0; i < 5; ++i) {
@@ -24,7 +24,7 @@ export default class Game extends Phaser.Scene {
       const y = 150 * i;
 
       /** @type {Phaser.Physics.Arcade.Sprite} */
-      const platform = platforms.create(x, y, 'platform');
+      const platform = this.platforms.create(x, y, 'platform');
       platform.scale = 0.5;
 
       /** @type {Phaser.Physics.Arcade.StaticBody} */
@@ -33,7 +33,7 @@ export default class Game extends Phaser.Scene {
     }
 
     this.player = this.physics.add.sprite(240, 320, 'bunny-stand').setScale(0.5);
-    this.physics.add.collider(platforms, this.player);
+    this.physics.add.collider(this.platforms, this.player);
     this.player.body.checkCollision.up = false;
     this.player.body.checkCollision.left = false;
     this.player.body.checkCollision.right = false;
