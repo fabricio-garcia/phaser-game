@@ -38,8 +38,11 @@ export default class Game extends Phaser.Scene {
       body.updateFromGameObject();
     }
 
-    this.player = this.physics.add.sprite(240, 320, 'bunny-stand').setScale(0.5);
+    this.player = this.physics.add
+      .sprite(240, 320, 'bunny-stand')
+      .setScale(0.5);
     this.physics.add.collider(this.platforms, this.player);
+    this.physics.add.collider(this.platforms, this.carrots);
     this.player.body.checkCollision.up = false;
     this.player.body.checkCollision.left = false;
     this.player.body.checkCollision.right = false;
@@ -48,12 +51,11 @@ export default class Game extends Phaser.Scene {
 
     this.carrots = this.physics.add.group({
       classType: Carrot,
-    })
-    this.carrots.get(240, 320, 'carrot')
+    });
   }
 
-  update() {
-    this.platforms.children.iterate(child => {
+  update(t, dt) {
+    this.platforms.children.iterate((child) => {
       /** @type {Phaser.Physics.Arcade.Sprite} */
       const platform = child;
 
@@ -61,6 +63,7 @@ export default class Game extends Phaser.Scene {
       if (platform.y >= scrollY + 700) {
         platform.y = scrollY - Phaser.Math.Between(50, 100);
         platform.body.updateFromGameObject();
+        this.addCarrotAbove(platform);
       }
     });
 
@@ -92,5 +95,21 @@ export default class Game extends Phaser.Scene {
     } else if (sprite.x > gameWidth + halfWidth) {
       sprite.x = -halfWidth;
     }
+  }
+
+  /**
+   * @param {Phaser.GameObjects.Sprite} sprite
+   */
+  addCarrotAbove(sprite) {
+    const y = sprite.y - sprite.displayHeight;
+
+    /** @type {Phaser.Physics.Arcade.Sprite} */
+    const carrot = this.carrots.get(sprite.x, y, 'carrot');
+
+    this.add.existing(carrot);
+
+    carrot.body.setSize(carrot.width, carrot.height);
+
+    return carrot;
   }
 }
