@@ -1,7 +1,15 @@
-function component() {
-  const element = document.createElement('div');
-  element.innerHTML = 'Hello WebPack';
-  return element;
-}
+import Phaser from 'phaser';
+import Game from './scenes/Game';
 
-document.body.appendChild(component());
+// require('./assets/bg_layer1.png');
+
+const config = {
+  type: Phaser.AUTO,
+  width: 480,
+  height: 640,
+  scene: Game,
+};
+
+const game = new Phaser.Game(config);
+
+export default game;

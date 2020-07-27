@@ -95,7 +95,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- This app is based on the tutorials provided by [Yaser AlAzm](https://github.com/yaser-alazem)
+- This app is based partially on the tutorials provided by [W. Clarkson](https://www.youtube.com/playlist?list=PLkpBJaFZykNDspZT7IPi2YlV4ybNu0RXF)
 
 ## 📝 License
 
