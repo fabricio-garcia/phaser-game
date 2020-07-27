@@ -15,6 +15,7 @@ export default class Game extends Phaser.Scene {
   }
 
   create() {
+    this.add.image(240, 320, 'background').setScrollFactor(1, 0);
     this.add.image(240, 320, 'background');
     this.platforms = this.physics.add.staticGroup();
 
