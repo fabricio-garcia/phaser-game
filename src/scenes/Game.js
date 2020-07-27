@@ -41,6 +41,17 @@ export default class Game extends Phaser.Scene {
   }
 
   update() {
+    this.platforms.children.iterate(child => {
+      /** @type {Phaser.Physics.Arcade.Sprite} */
+      const platform = child;
+
+      const { scrollY } = this.cameras.main;
+      if (platform.y >= scrollY + 700) {
+        platform.y = scrollY - Phaser.Math.Between(50, 100);
+        platform.body.updateFromGameObject();
+      }
+    });
+
     const touchingDown = this.player.body.touching.down;
 
     if (touchingDown) {
