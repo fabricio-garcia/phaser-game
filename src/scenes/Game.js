@@ -21,7 +21,6 @@ export default class Game extends Phaser.Scene {
 
   create() {
     this.add.image(240, 320, 'background').setScrollFactor(1, 0);
-    this.add.image(240, 320, 'background');
     this.platforms = this.physics.add.staticGroup();
 
     // eslint-disable-next-line no-plusplus
@@ -42,16 +41,26 @@ export default class Game extends Phaser.Scene {
       .sprite(240, 320, 'bunny-stand')
       .setScale(0.5);
     this.physics.add.collider(this.platforms, this.player);
-    this.physics.add.collider(this.platforms, this.carrots);
+
     this.player.body.checkCollision.up = false;
     this.player.body.checkCollision.left = false;
     this.player.body.checkCollision.right = false;
+
     this.cameras.main.startFollow(this.player);
     this.cameras.main.setDeadzone(this.scale.width * 1.5);
 
     this.carrots = this.physics.add.group({
       classType: Carrot,
     });
+
+    this.physics.add.collider(this.platforms, this.carrots);
+    this.physics.add.overlap(
+      this.player,
+      this.carrots,
+      this.handleCollectCarrot,
+      undefined,
+      this,
+    );
   }
 
   update(t, dt) {
@@ -59,7 +68,7 @@ export default class Game extends Phaser.Scene {
       /** @type {Phaser.Physics.Arcade.Sprite} */
       const platform = child;
 
-      const { scrollY } = this.cameras.main;
+      const { scrollY } = this.cameras.main; // check later
       if (platform.y >= scrollY + 700) {
         platform.y = scrollY - Phaser.Math.Between(50, 100);
         platform.body.updateFromGameObject();
@@ -106,10 +115,20 @@ export default class Game extends Phaser.Scene {
     /** @type {Phaser.Physics.Arcade.Sprite} */
     const carrot = this.carrots.get(sprite.x, y, 'carrot');
 
+    carrot.setActive(true);
+    carrot.setVisible(true);
     this.add.existing(carrot);
-
     carrot.body.setSize(carrot.width, carrot.height);
-
+    this.physics.world.enable(carrot);
     return carrot;
+  }
+
+  /**
+   * @param {Phaser.GameObjects.Sprite} player
+   * @param {Carrot} carrot
+   */
+  handleCollectCarrot(player, carrot) {
+    this.carrots.killAndHide(carrot);
+    this.physics.world.disableBody(carrot.body);
   }
 }
