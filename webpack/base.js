@@ -23,7 +23,7 @@ module.exports = {
         use: 'raw-loader',
       },
       {
-        test: /\.(png|jpg|gif|json|xml|ico|svg)$/,
+        test: /\.(png|jpg|gif|json|xml|ico|svg|ogg)$/,
         use: [
           {
             loader: 'file-loader',

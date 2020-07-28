@@ -1,4 +1,6 @@
 /* eslint-disable import/no-extraneous-dependencies */
+const path = require('path');
+
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -12,14 +14,18 @@ module.exports = {
     index: './src/index.js',
   },
 
-  // https://webpack.js.org/concepts/output/
   output: {
     filename: '[name].[hash:20].js',
+    path: path.resolve(__dirname, 'dist'),
   },
 
   // https://webpack.js.org/concepts/loaders/
   module: {
     rules: [
+      {
+        test: /\.html$/,
+        use: ['html-loader'],
+      },
       {
         test: /\.js$/i,
         exclude: /node_modules/,
@@ -29,14 +35,13 @@ module.exports = {
         },
       },
       {
-        test: /\.(png|jpe?g|gif|svg)$/i,
+        test: /\.(png|jpg|gif|json|xml|ico|svg|ogg)$/i,
         use: [
           {
-            loader: 'url-loader',
+            loader: 'file-loader',
             options: {
               name: '[name].[hash:20].[ext]',
-              esModule: false,
-              limit: 8192,
+              outputPath: 'assets',
             },
           },
         ],
@@ -49,8 +54,8 @@ module.exports = {
     new CleanWebpackPlugin(), // cleans output.path by default
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      inject: 'body',
-      chunks: ['index'],
+      // inject: 'body',
+      // chunks: ['index'],
       filename: 'index.html',
     }),
   ],

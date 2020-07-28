@@ -4,8 +4,9 @@ import Platform from '../assets/ground_grass.png';
 import BunnyStand from '../assets/bunny1_stand.png';
 import BunnyJump from '../assets/bunny1_jump.png';
 import CarrotSprite from '../assets/carrot.png';
-import JumpSound from '../assets/phaseJump1.ogg';
 import Carrot from './game/Carrot';
+
+const JumpSound = require('../assets/phaseJump1.ogg');
 
 export default class Game extends Phaser.Scene {
   constructor() {
