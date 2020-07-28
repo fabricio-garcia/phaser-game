@@ -165,6 +165,7 @@ export default class Game extends Phaser.Scene {
       const platform = platforms[i];
 
       if (platform.y < bottomPlatform.y) {
+        // eslint-disable-next-line no-continue
         continue;
       }
 
