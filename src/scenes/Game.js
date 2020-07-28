@@ -11,6 +11,10 @@ export default class Game extends Phaser.Scene {
     super('game');
   }
 
+  init() {
+    this.carrotsCollected = 0;
+  }
+
   preload() {
     this.load.image('background', Layer);
     this.load.image('platform', Platform);
@@ -23,8 +27,7 @@ export default class Game extends Phaser.Scene {
     this.add.image(240, 320, 'background').setScrollFactor(1, 0);
     this.platforms = this.physics.add.staticGroup();
 
-    // eslint-disable-next-line no-plusplus
-    for (let i = 0; i < 5; ++i) {
+    for (let i = 0; i < 5; i += 1) {
       const x = Phaser.Math.Between(80, 400);
       const y = 150 * i;
 
@@ -61,6 +64,9 @@ export default class Game extends Phaser.Scene {
       undefined,
       this,
     );
+    this.carrotsCollectedText = this.add.text(240, 10, 'Carrots: 0', { color: '#000', fontSize: 24 })
+      .setScrollFactor(0)
+      .setOrigin(0.5, 0);
   }
 
   update(t, dt) {
@@ -130,5 +136,8 @@ export default class Game extends Phaser.Scene {
   handleCollectCarrot(player, carrot) {
     this.carrots.killAndHide(carrot);
     this.physics.world.disableBody(carrot.body);
+    this.carrotsCollected += 1;
+    const value = `Carrots: ${this.carrotsCollected}`;
+    this.carrotsCollectedText.text = value;
   }
 }
