@@ -4,6 +4,7 @@ import Platform from '../assets/ground_grass.png';
 import BunnyStand from '../assets/bunny1_stand.png';
 import BunnyJump from '../assets/bunny1_jump.png';
 import CarrotSprite from '../assets/carrot.png';
+import JumpSound from '../assets/phaseJump1.ogg';
 import Carrot from './game/Carrot';
 
 export default class Game extends Phaser.Scene {
@@ -21,6 +22,7 @@ export default class Game extends Phaser.Scene {
     this.load.image('bunny-stand', BunnyStand);
     this.load.image('carrot', CarrotSprite);
     this.load.image('bunny-jump', BunnyJump);
+    this.load.audio('jump', JumpSound);
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
@@ -70,7 +72,7 @@ export default class Game extends Phaser.Scene {
       .setOrigin(0.5, 0);
   }
 
-  update(t, dt) {
+  update() {
     this.platforms.children.iterate((child) => {
       /** @type {Phaser.Physics.Arcade.Sprite} */
       const platform = child;
@@ -88,6 +90,7 @@ export default class Game extends Phaser.Scene {
     if (touchingDown) {
       this.player.setVelocityY(-300);
       this.player.setTexture('bunny-jump');
+      this.sound.play('jump');
     }
 
     const vy = this.player.body.velocity.y;
