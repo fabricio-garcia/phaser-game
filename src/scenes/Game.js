@@ -1,5 +1,5 @@
 import Phaser from 'phaser';
-import Carrot from './game/Carrot';
+import Carrot from '../game/Carrot';
 
 import layer from '../assets/bg_layer1.png';
 import platform from '../assets/ground_grass.png';
