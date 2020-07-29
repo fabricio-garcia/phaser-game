@@ -1,12 +1,12 @@
 import Phaser from 'phaser';
-import Layer from '../assets/bg_layer1.png';
-import Platform from '../assets/ground_grass.png';
-import BunnyStand from '../assets/bunny1_stand.png';
-import BunnyJump from '../assets/bunny1_jump.png';
-import CarrotSprite from '../assets/carrot.png';
 import Carrot from './game/Carrot';
 
-const JumpSound = require('../assets/phaseJump1.ogg');
+import layer from '../assets/bg_layer1.png';
+import platform from '../assets/ground_grass.png';
+import bunnyStand from '../assets/bunny1_stand.png';
+import bunnyJump from '../assets/bunny1_jump.png';
+import carrot from '../assets/carrot.png';
+import jumpSound from '../assets/phaseJump1.ogg';
 
 export default class Game extends Phaser.Scene {
   constructor() {
@@ -18,12 +18,12 @@ export default class Game extends Phaser.Scene {
   }
 
   preload() {
-    this.load.image('background', Layer);
-    this.load.image('platform', Platform);
-    this.load.image('bunny-stand', BunnyStand);
-    this.load.image('carrot', CarrotSprite);
-    this.load.image('bunny-jump', BunnyJump);
-    this.load.audio('jump', JumpSound);
+    this.load.image('background', layer);
+    this.load.image('platform', platform);
+    this.load.image('bunny-stand', bunnyStand);
+    this.load.image('bunny-jump', bunnyJump);
+    this.load.image('carrot', carrot);
+    this.load.audio('jump-sound', jumpSound);
     this.cursors = this.input.keyboard.createCursorKeys();
   }
 
@@ -68,7 +68,8 @@ export default class Game extends Phaser.Scene {
       undefined,
       this,
     );
-    this.carrotsCollectedText = this.add.text(240, 10, 'Carrots: 0', { color: '#000', fontSize: 24 })
+    const style = { color: '#000', fontSize: 24 };
+    this.carrotsCollectedText = this.add.text(240, 10, 'Carrots: 0', style)
       .setScrollFactor(0)
       .setOrigin(0.5, 0);
   }
@@ -91,7 +92,7 @@ export default class Game extends Phaser.Scene {
     if (touchingDown) {
       this.player.setVelocityY(-300);
       this.player.setTexture('bunny-jump');
-      this.sound.play('jump');
+      this.sound.play('jump-sound');
     }
 
     const vy = this.player.body.velocity.y;
