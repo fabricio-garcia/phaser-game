@@ -95,7 +95,8 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- This app is based partially on the tutorials provided by [W. Clarkson](https://www.youtube.com/playlist?list=PLkpBJaFZykNDspZT7IPi2YlV4ybNu0RXF)
+- Thumbs up for the great tutorials from [W. Clarkson](https://www.youtube.com/playlist?list=PLkpBJaFZykNDspZT7IPi2YlV4ybNu0RXF)
+- Thank to [Kenney](https://kenney.nl/) for the amazing [jumper pack](https://kenney.nl/assets/jumper-pack);
 
 ## 📝 License
 
