@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import Start from './scenes/Start';
+import Instructions from './scenes/Instructions';
 import Game from './scenes/Game';
 import GameOver from './scenes/GameOver';
 
@@ -9,7 +10,7 @@ const config = {
   type: Phaser.AUTO,
   width: 480,
   height: 640,
-  scene: [Start, Game, GameOver],
+  scene: [Start, Instructions, Game, GameOver],
   physics: {
     default: 'arcade',
     arcade: {
