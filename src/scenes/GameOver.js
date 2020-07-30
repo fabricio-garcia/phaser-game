@@ -14,7 +14,7 @@ export default class GameOver extends Phaser.Scene {
   }
 
   create() {
-    this.add.image(240, 320, 'background'); 
+    this.add.image(240, 320, 'background');
 
     this.add
       .text(this.game.config.width * 0.5, 260, 'GAME OVER', {

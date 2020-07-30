@@ -68,10 +68,16 @@ export default class Game extends Phaser.Scene {
       undefined,
       this,
     );
-    const style = { color: '#fff', fontSize: 24, fontWeight: 'bold' };
-    this.carrotsCollectedText = this.add.text(240, 10, 'Carrots: 0', style)
+    this.carrotsCollectedText = this.add
+      .text(this.game.config.width * 0.5, 12, 'Carrots: 0', {
+        fontFamily: 'Play',
+        fontSize: 20,
+        fontStyle: 'bold',
+        color: '#fff',
+        align: 'center',
+      })
       .setScrollFactor(0)
-      .setOrigin(0.5, 0);
+      .setOrigin(0.5);
   }
 
   update() {
