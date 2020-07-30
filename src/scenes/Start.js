@@ -5,6 +5,8 @@ import WebFontFile from '../helpers/WebFontLoader';
 import layer from '../assets/bg_layer1.png';
 import buttonUp from '../assets/green_button00.png';
 import buttonDown from '../assets/green_button01.png';
+import bunny1 from '../assets/bunny1_walk1.png';
+
 import buttonDownSound from '../assets/sndBtnDown.wav';
 
 export default class Start extends Phaser.Scene {
@@ -16,6 +18,7 @@ export default class Start extends Phaser.Scene {
     this.load.image('background', layer);
     this.load.image('buttonUp', buttonUp);
     this.load.image('buttonDown', buttonDown);
+    this.load.image('bunny1', bunny1);
     this.load.audio('buttonDownSound', buttonDownSound);
     this.load.addFile(new WebFontFile(this.load, 'Play'));
   }
@@ -25,6 +28,7 @@ export default class Start extends Phaser.Scene {
     this.sfx = {
       btnDown: this.sound.add('buttonDownSound'),
     };
+    this.add.image(240, 320, 'bunny1').setScale(0.5);
     this.btnInstructions = this.add.sprite(
       this.game.config.width * 0.5,
       400,
@@ -47,7 +51,7 @@ export default class Start extends Phaser.Scene {
     buttonHelper.addButtonText(this, 460, 'Play');
     buttonHelper.addButtonText(this, 520, 'Score board');
     this.title = this.add
-      .text(this.game.config.width * 0.5, 250, 'JUMPING RABBIT', {
+      .text(this.game.config.width * 0.5, 175, 'JUMPING RABBIT', {
         fontFamily: 'Play',
         fontSize: 45,
         fontStyle: 'bold',
