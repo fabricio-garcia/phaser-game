@@ -55,6 +55,7 @@ export default class GameOver extends Phaser.Scene {
       buttonHelper.buttons.up,
     );
 
+    // eslint-disable-next-line max-len
     buttonHelper.addButtonFunctionality(this, this.btnSubmit, () => scoreHelper.handleScore(this, this.gameScore));
     buttonHelper.addButtonFunctionality(this, this.btnPlay, () => scoreHelper.backToMenu(this));
     buttonHelper.addButtonText(this, 380, 'Submit score');
