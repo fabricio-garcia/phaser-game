@@ -1,20 +1,29 @@
 body {
   height: 100%;
-  background-color: #eceaea;
+  background-color: #ffa34d;
 }
 
 #game-container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
+  height: 640px;
+  width: 480px;
   margin: 0 auto;
   position: relative;
 }
 
-#game-container > canvas {
+#game-container canvas {
   position: absolute;
   top: 0;
   left: 0;
   z-index: 0;
+}
+
+#game-container input {
+  background-color: white;
+  position: absolute;
+  width: 13em;
+  top: 20em;
+  left: 10.5em;
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 5px;
 }
