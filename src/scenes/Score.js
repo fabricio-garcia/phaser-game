@@ -19,23 +19,23 @@ export default class Score extends Phaser.Scene {
 
     this.add
       .text(this.game.config.width * 0.5, 70, 'Score Board', {
-        fontSize: 28,
+        fontSize: 45,
         fontFamily: 'Play',
       })
       .setOrigin(0.5);
 
     this.btnPlay = this.add.sprite(
       this.game.config.width * 0.5,
-      430,
+      510,
       buttonHelper.buttons.up,
     );
 
     buttonHelper.addButtonFunctionality(this, this.btnPlay, () => this.scene.start('start'));
 
-    buttonHelper.addButtonText(this, 430, 'Menu');
+    buttonHelper.addButtonText(this, 510, 'Menu');
 
     this.startOver = this.add
-      .text(this.game.config.width * 0.5, 560, 'Hit SPACE BAR to start over', {
+      .text(this.game.config.width * 0.5, 570, 'Hit SPACE BAR to PLAY', {
         fontFamily: 'Play',
         fontSize: 15,
         fontStyle: 'bold',
@@ -58,21 +58,21 @@ export default class Score extends Phaser.Scene {
     if (Array.isArray(resultObject.result)) {
       this.scores = resultObject.result.sort((a, b) => (a.score > b.score ? -1 : 1));
 
-      for (let i = 0; i < 15; i += 1) {
+      for (let i = 0; i < 10; i += 1) {
         const y = 150 + 30 * i;
 
-        this.addText(150, y, this.scores[i].user);
-        this.addText(400, y, this.scores[i].score);
+        this.addText(115, y, this.scores[i].user);
+        this.addText(370, y, this.scores[i].score);
       }
     } else {
-      this.addText(150, 160, resultObject);
+      this.addText(this, 165, resultObject);
     }
   }
 
   addText(x, y, text) {
     this.add
       .text(x, y, text, {
-        fontFamily: 'Orbitron',
+        fontFamily: 'Play',
         fontSize: 15,
         fontStyle: 'bold',
         color: '#ffffff',

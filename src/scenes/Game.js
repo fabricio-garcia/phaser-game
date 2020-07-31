@@ -69,7 +69,7 @@ export default class Game extends Phaser.Scene {
       this,
     );
     this.carrotsCollectedText = this.add
-      .text(this.game.config.width * 0.5, 12, 'Carrots: 0', {
+      .text(this.game.config.width * 0.5, 20, 'Points: 0', {
         fontFamily: 'Play',
         fontSize: 20,
         fontStyle: 'bold',
@@ -85,7 +85,7 @@ export default class Game extends Phaser.Scene {
       /** @type {Phaser.Physics.Arcade.Sprite} */
       const platform = child;
 
-      const { scrollY } = this.cameras.main; // check later
+      const { scrollY } = this.cameras.main;
       if (platform.y >= scrollY + 700) {
         platform.y = scrollY - Phaser.Math.Between(50, 100);
         platform.body.updateFromGameObject();
@@ -118,7 +118,7 @@ export default class Game extends Phaser.Scene {
 
     const bottomPlatform = this.findBottomMostPlatform();
     if (this.player.y > bottomPlatform.y + 200) {
-      this.scene.start('game-over');
+      this.scene.start('game-over', { score: this.carrotsCollected });
     }
   }
 
@@ -159,7 +159,7 @@ export default class Game extends Phaser.Scene {
   handleCollectCarrot(player, carrot) {
     this.carrots.killAndHide(carrot);
     this.physics.world.disableBody(carrot.body);
-    this.carrotsCollected += 1;
+    this.carrotsCollected += 100;
     const value = `Carrots: ${this.carrotsCollected}`;
     this.carrotsCollectedText.text = value;
   }
@@ -167,18 +167,14 @@ export default class Game extends Phaser.Scene {
   findBottomMostPlatform() {
     const platforms = this.platforms.getChildren();
     let bottomPlatform = platforms[0];
-
     for (let i = 1; i < platforms.length; i += 1) {
       const platform = platforms[i];
-
       if (platform.y < bottomPlatform.y) {
         // eslint-disable-next-line no-continue
         continue;
       }
-
       bottomPlatform = platform;
     }
-
     return bottomPlatform;
   }
 }

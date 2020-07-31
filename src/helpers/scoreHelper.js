@@ -5,7 +5,7 @@ const apiInfo = {
   headers: {
     'Content-Type': 'application/json',
   },
-  gameID: '1504TZsX2gyehoKXvxL4',
+  gameID: 'bunny-jump',
 };
 
 const getPlayerName = () => {
@@ -39,13 +39,18 @@ export const handleScore = async (scene, gameScore) => {
   const playerName = getPlayerName();
   const result = await postScore(playerName, gameScore);
   if (result) {
-    scene.scene.start('Score');
+    scene.scene.start('score');
     deleteNameInput();
   }
 };
 
+export const backToMenu = (scene) => {
+  scene.scene.start('start');
+  deleteNameInput();
+};
+
 export const restartGame = (scene) => {
-  scene.scene.start('Game');
+  scene.scene.start('game');
   deleteNameInput();
 };
 
