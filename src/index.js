@@ -20,7 +20,7 @@ const config = {
     },
   },
   pixelArt: true,
-  // parent: document.querySelector('#game-container'),
+  parent: document.querySelector('#game-container'),
 };
 
 // eslint-disable-next-line no-unused-vars
