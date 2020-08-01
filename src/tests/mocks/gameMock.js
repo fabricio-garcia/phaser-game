@@ -25,7 +25,7 @@ const game = () => {
     },
   };
   return new Phaser.Game(config);
-}
+};
 
 // eslint-disable-next-line no-unused-vars
 
