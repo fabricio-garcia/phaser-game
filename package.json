@@ -27,6 +27,19 @@
     "url": "https://github.com/fabricio-garcia/phaser-game/issues"
   },
   "homepage": "https://github.com/fabricio-garcia/phaser-game#readme",
+  "jest": {
+    "setupFiles": [
+      "jest-canvas-mock"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ],
+    "moduleNameMapper": {
+      "\\.(css|less|sass|scss)$": "<rootDir>/src/tests/mocks/styleMock.js",
+      "\\.(gif|ttf|eot|svg|png|wav|ogg)$": "<rootDir>/src/tests/mocks/fileMock.js"
+    }
+  },
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.11.0",
