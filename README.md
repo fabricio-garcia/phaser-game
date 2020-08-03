@@ -125,6 +125,7 @@ Give a ⭐️ if you like this project!
 
 - [Ourcade](https://ourcade.co/) for the [Infinite Jumper in Phaser 3](https://ourcade.co/books/infinite-jumper-phaser3/) tutorial.
 - [Kenney](https://kenney.nl/)'s [jumper pack](https://kenney.nl/assets/jumper-pack) and [interface sounds](https://kenney.nl/assets/interface-sounds).
+- Thank you [shshamim](https://github.com/shshamim63) for the valuable advice on this project.
 
 # License
 
