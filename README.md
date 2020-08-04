@@ -25,8 +25,11 @@
 
 # Table of Contents
 
+- [About](#about)
 - [About the game](#about-the-game)
-- [How to play](#how-to-play)
+  - [History](#history)
+  - [Code](#code)
+  - [How to play](#how-to-play)
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
@@ -40,11 +43,23 @@
 - [Acknowledgments](#acknowledgments)
 - [License](#license)
 
+# About
+
+This is my Capstone project for Microverse's JavaScript course. In this project, the goal was to build a shooter game using JavaScript with the Phaser 3 framework and Webpack.
+
 # About the game
 
 This is my Capstone project for Microverse's JavaScript course. In this project, the goal was to build a shooter game using JavaScript with the Phaser 3 framework and Webpack.
 
-# How to play
+## History
+
+This project is based on the book Ourcade Tutorial: Infinite Jumper in Phaser 3. The book explains the basics of the Phaser 3 framework in a clear and fun way using no more than HTML, JavaScript and a Phaser CDN. I transform that to an NPM project and on top of that I added the Webpack configuration and a little bit of code CSS3. In the process I created extra scenes and helper files to make calls to the API, make the text flashing, and use google fonts.
+
+## Code
+
+To accomplish with the assessment criteria, the code is encapsulated using ES6+ modules and deals with async data. Each scene in the game is linked to the others by using buttons or in some cases using tha space bar. All the bundling is done through Webpack. The score system was implemented with the assistance of JavasCript event-loops of type async ... await, keeping the structure of the game simple and avoiding the need of other technologies like localStorage. All the testing is done via Jest. Of course the project make use of linters to maintain code standards.
+
+## How to play
 
 - Hit the Instructions button for an in-game description
 - Hit the Play button to start the game.
